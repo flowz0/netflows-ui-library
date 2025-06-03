@@ -6,6 +6,8 @@ import { MonthSelector } from "./MonthSelector";
 import { YearSelector } from "./YearSelector";
 import { format, isToday, isSameMonth, isSameDay } from "date-fns";
 
+import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs";
+
 export const DatePicker = () => {
   const {
     selectedDate,
@@ -52,10 +54,12 @@ export const DatePicker = () => {
   }, [setShowMonthSelector, setShowYearSelector]);
 
   return (
-    <div ref={datePickerRef} className="w-80 mx-auto">
+    <div ref={datePickerRef} className="max-w-80 mx-auto">
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
-        <button onClick={prevMonth}>&lt;</button>
+        <button onClick={prevMonth}>
+          <BsFillArrowLeftCircleFill className="text-neutral-800 w-6 h-6" />
+        </button>
         <div className="flex gap-2">
           <button
             onClick={() => {
@@ -76,7 +80,9 @@ export const DatePicker = () => {
             {format(currentMonth, "yyyy")}
           </button>
         </div>
-        <button onClick={nextMonth}>&gt;</button>
+        <button onClick={nextMonth}>
+          <BsFillArrowRightCircleFill className="text-neutral-800 w-6 h-6" />
+        </button>
       </div>
 
       {showMonthSelector ? (
@@ -91,20 +97,20 @@ export const DatePicker = () => {
         />
       ) : (
         <>
-          <div className="grid grid-cols-7 gap-1 text-center font-medium text-sm text-gray-700 mb-2">
+          <div className="grid grid-cols-7 gap-2 text-center font-medium text-sm text-gray-700 mb-2">
             {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((d) => (
               <div key={d}>{d}</div>
             ))}
           </div>
 
-          <div className="grid grid-cols-7 gap-1 text-center text-sm">
+          <div className="grid grid-cols-7 gap-2 text-center text-sm">
             {calendarDays.map((day) => {
               const isCurrentMonth = isSameMonth(day, currentMonth);
               return (
                 <button
                   key={day.toISOString()}
                   onClick={() => selectDate(day)}
-                  className={`p-1 rounded-full transition 
+                  className={`p-2 rounded-full transition 
                     ${isToday(day) ? "bg-blue-100" : ""}
                     ${selectedDate && isSameDay(day, selectedDate)
                       ? "bg-blue-500 text-white"
