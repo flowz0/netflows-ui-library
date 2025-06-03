@@ -58,7 +58,7 @@ export const DatePicker = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <button onClick={prevMonth}>
-          <BsFillArrowLeftCircleFill className="text-neutral-800 w-6 h-6" />
+          <BsFillArrowLeftCircleFill className="text-neutral-800 w-6 h-6 cursor-pointer" />
         </button>
         <div className="flex gap-2">
           <button
@@ -66,7 +66,7 @@ export const DatePicker = () => {
               setShowMonthSelector((prev) => !prev);
               setShowYearSelector(false);
             }}
-            className="font-semibold"
+            className="font-semibold underline cursor-pointer"
           >
             {format(currentMonth, "MMMM")}
           </button>
@@ -75,13 +75,13 @@ export const DatePicker = () => {
               setShowYearSelector((prev) => !prev);
               setShowMonthSelector(false);
             }}
-            className="font-semibold"
+            className="font-semibold underline cursor-pointer"
           >
             {format(currentMonth, "yyyy")}
           </button>
         </div>
         <button onClick={nextMonth}>
-          <BsFillArrowRightCircleFill className="text-neutral-800 w-6 h-6" />
+          <BsFillArrowRightCircleFill className="text-neutral-800 w-6 h-6 cursor-pointer" />
         </button>
       </div>
 
@@ -110,7 +110,7 @@ export const DatePicker = () => {
                 <button
                   key={day.toISOString()}
                   onClick={() => selectDate(day)}
-                  className={`p-2 rounded-full transition 
+                  className={`p-2 rounded-full transition cursor-pointer 
                     ${isToday(day) ? "bg-blue-100" : ""}
                     ${selectedDate && isSameDay(day, selectedDate)
                       ? "bg-blue-500 text-white"
