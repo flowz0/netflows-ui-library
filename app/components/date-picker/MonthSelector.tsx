@@ -14,7 +14,7 @@ export const MonthSelector = ({ onSelect, selectedMonthIndex }: Props) => (
       <button
         key={month}
         onClick={() => onSelect(index)}
-        className={`px-2 py-1 rounded transition
+        className={`px-2 py-2 rounded transition
           ${index === selectedMonthIndex
             ? "bg-blue-500 text-white"
             : "hover:bg-blue-100"}`}
