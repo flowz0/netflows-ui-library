@@ -6,7 +6,8 @@ import { MonthSelector } from "./MonthSelector";
 import { YearSelector } from "./YearSelector";
 import { format, isToday, isSameMonth, isSameDay } from "date-fns";
 
-import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { IoIosClose } from "react-icons/io";
 
 export const DatePicker = () => {
   const {
@@ -54,34 +55,34 @@ export const DatePicker = () => {
   }, [setShowMonthSelector, setShowYearSelector]);
 
   return (
-    <div ref={datePickerRef} className="max-w-80 mx-auto">
+    <div ref={datePickerRef} className="bg-neutral-800 rounded-lg py-5 px-4 max-w-80 mx-auto">
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <button onClick={prevMonth}>
-          <BsFillArrowLeftCircleFill className="text-neutral-800 w-6 h-6 cursor-pointer" />
+          <FaArrowLeft className="text-neutral-300 w-4 h-4 cursor-pointer transition-colors duration-300 ease-in-out hover:text-neutral-100" />
         </button>
-        <div className="flex gap-2">
+        <div className="flex gap-1">
           <button
             onClick={() => {
               setShowMonthSelector((prev) => !prev);
               setShowYearSelector(false);
             }}
-            className="font-semibold underline cursor-pointer"
+            className="bg-neutral-700 text-neutral-200 rounded-lg px-2 py-1 font-semibold cursor-pointer transition-colors duration-300 ease-in-out hover:bg-neutral-600"
           >
-            {format(currentMonth, "MMMM")}
+            {showMonthSelector ? <IoIosClose className="w-6 h-6" /> : format(currentMonth, "MMMM")}
           </button>
           <button
             onClick={() => {
               setShowYearSelector((prev) => !prev);
               setShowMonthSelector(false);
             }}
-            className="font-semibold underline cursor-pointer"
+            className="bg-neutral-700 text-neutral-200 rounded-lg px-2 py-1 font-semibold cursor-pointer transition-colors duration-300 ease-in-out hover:bg-neutral-600"
           >
-            {format(currentMonth, "yyyy")}
+            {showYearSelector ? <IoIosClose className="w-6 h-6" /> : format(currentMonth, "yyyy")}
           </button>
         </div>
         <button onClick={nextMonth}>
-          <BsFillArrowRightCircleFill className="text-neutral-800 w-6 h-6 cursor-pointer" />
+          <FaArrowRight className="text-neutral-300 w-4 h-4 cursor-pointer transition-colors duration-300 ease-in-out hover:text-neutral-100" />
         </button>
       </div>
 
@@ -97,7 +98,7 @@ export const DatePicker = () => {
         />
       ) : (
         <>
-          <div className="grid grid-cols-7 gap-2 text-center font-medium text-sm text-gray-700 mb-2">
+          <div className="grid grid-cols-7 gap-2 text-center font-semibold text-sm text-neutral-200 mb-2">
             {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((d) => (
               <div key={d}>{d}</div>
             ))}
@@ -111,11 +112,11 @@ export const DatePicker = () => {
                   key={day.toISOString()}
                   onClick={() => selectDate(day)}
                   className={`p-2 rounded-full transition cursor-pointer 
-                    ${isToday(day) ? "bg-blue-100" : ""}
+                    ${isToday(day) ? "bg-neutral-100 text-neutral-900" : ""}
                     ${selectedDate && isSameDay(day, selectedDate)
-                      ? "bg-blue-500 text-white"
-                      : "hover:bg-blue-200"}
-                    ${!isCurrentMonth ? "text-gray-400" : ""}
+                      ? "bg-neutral-500 text-neutral-100"
+                      : "hover:bg-neutral-700"}
+                    ${!isCurrentMonth ? "text-neutral-600" : "text-neutral-100"}
                   `}
                 >
                   {format(day, "d")}
@@ -127,7 +128,7 @@ export const DatePicker = () => {
       )}
 
       {selectedDate && (
-        <p className="mt-4 text-center text-sm text-gray-600">
+        <p className="mt-6 text-center text-sm text-neutral-500">
           Selected: {format(selectedDate, "PPP")}
         </p>
       )}
