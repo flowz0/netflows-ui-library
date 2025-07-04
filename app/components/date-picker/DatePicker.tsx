@@ -59,7 +59,7 @@ export const DatePicker = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <button onClick={prevMonth}>
-          <FaArrowLeft className="text-neutral-300 w-4 h-4 cursor-pointer transition-colors duration-300 ease-in-out hover:text-neutral-100" />
+          <FaArrowLeft className="text-neutral-500 w-4 h-4 cursor-pointer transition-colors duration-300 ease-in-out hover:text-neutral-200" />
         </button>
         <div className="flex gap-1">
           <button
@@ -82,7 +82,7 @@ export const DatePicker = () => {
           </button>
         </div>
         <button onClick={nextMonth}>
-          <FaArrowRight className="text-neutral-300 w-4 h-4 cursor-pointer transition-colors duration-300 ease-in-out hover:text-neutral-100" />
+          <FaArrowRight className="text-neutral-500 w-4 h-4 cursor-pointer transition-colors duration-300 ease-in-out hover:text-neutral-200" />
         </button>
       </div>
 
